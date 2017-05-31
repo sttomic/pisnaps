@@ -14,7 +14,7 @@ echo $CAM_URL
 
 TMP_DIR_BASE=/home/pi/tmp_snapshots
 
-
+startHour=`date +%Y%m%d_%H`
 startMinute=`date +%Y%m%d_%H%M`
 currentMinute=$startMinute
 tmp_dir=${TMP_DIR_BASE}/${CAM_NAME}/${startMinute}
@@ -40,6 +40,6 @@ done
 echo "UPLOADING"
 tarball=${TMP_DIR_BASE}/${CAM_NAME}/${startMinute}.tar.gz 
 tar  -C ${TMP_DIR_BASE}/${CAM_NAME} -cf $tarball ${startMinute} --gzip
-/usr/local/bin/dropbox_uploader.sh upload $tarball ${CAM_NAME}/${startMinute}.tar.gz  
+/usr/local/bin/dropbox_uploader.sh upload $tarball ${CAM_NAME}/${startHour}/${startMinute}.tar.gz  
 rm -rf $tmp_dir
 rm -f $tarball
